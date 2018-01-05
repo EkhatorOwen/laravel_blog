@@ -1,22 +1,48 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends('main')
+@section('content')
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+@section('title','| Welcome')
 
-    <title>Laravel Blog</title>
-</head>
-<body>
-<h1>Hello, Laravel!</h1>
+    <div class="row">
+          <div class="jumbotron ">
+                <h1 class="display-4">Hello, world!</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                </p>
+          </div>
+    </div> <!-- end of row -->
+    <div class="row">
+        <div class="col-md-6" >
+                <div class="post">
+                    <h2> Post Title</h2>
+                    <p>story jjjjjjjjjjjjjjjjjjjjjjja;;;;;;;;;;;;sfsdfadsfasfadfasfasffffffffffffffffffffffff  sfsfasf    aafsdfa jjjjjj</p>
+                    <a href="#" class="btn btn-primary">Read more</a>
+                </div>
+                   <hr>
+                <div class="post">
+                    <h2> Post Title</h2>
+                    <p>story jjjjjjjjjjjjjjjjjjjjjjja;;;;;;;;;;;;sfsdfadsfasfadfasfasffffffffffffffffffffffff  sfsfasf    aafsdfa jjjjjj</p>
+                    <a href="#" class="btn btn-primary">Read more</a>
+                </div>
+                  <hr>
+                <div class="post">
+                    <h2> Post Title</h2>
+                    <p>story jjjjjjjjjjjjjjjjjjjjjjja;;;;;;;;;;;;sfsdfadsfasfadfasfasffffffffffffffffffffffff  sfsfasf    aafsdfa jjjjjj</p>
+                    <a href="#" class="btn btn-primary">Read more</a>
+                </div>
+                <hr>
+                <div class="post">
+                    <h2> Post Title</h2>
+                    <p>story jjjjjjjjjjjjjjjjjjjjjjja;;;;;;;;;;;;sfsdfadsfasfadfasfasffffffffffffffffffffffff  sfsfasf    aafsdfa jjjjjj</p>
+                    <a href="#" class="btn btn-primary">Read more</a>
+                </div>
+        </div>
+        <div class="col-md-4 offset-md-2 ">
+            <h1>Side bar</h1>
+        </div>
+    </div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection
