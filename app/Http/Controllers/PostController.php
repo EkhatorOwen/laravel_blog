@@ -85,7 +85,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Post is the name of the model
+        $post = Post::find($id);
+
+        return view('posts.edit')->with('post',$post);
     }
 
     /**
@@ -97,7 +100,19 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->save();
+        $request->session()->flash('success','The blog post was successfully updated!');
+       // return view('posts.show')->with('status',$value)->with('post',$post);
+        return redirect()->route('posts.show',$post->id);
+
+
     }
 
     /**
