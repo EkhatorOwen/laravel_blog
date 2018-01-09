@@ -16,7 +16,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        //create a variable and store all the blog posts in it form the database
+        $posts = Post::all();
+
+        //return a view and pass in the above variable
+        return view('posts.index')->with('posts',$posts);
     }
 
     /**
@@ -69,7 +73,8 @@ class PostController extends Controller
     public function show(Request $request, $id)
     {
         $value = $request->session()->get('success');
-        return view('posts.show')->with('status',$value);
+        $post= Post::find($id);
+        return view('posts.show')->with('status',$value)->with('post',$post);
     }
 
     /**
