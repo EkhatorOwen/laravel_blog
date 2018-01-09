@@ -8,15 +8,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link active" href="/">Home </a>
+                <a class="nav-link {{Request::is('/')?'active':''}}" href="/">Home </a>
 
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/about">About </a>
+                <a class="nav-link {{Request::is('about')?'active':''}}" href="/about">About </a>
 
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/contact">Contact </a>
+                <a class="nav-link {{Request::is('contact')?'active':''}}" href="/contact">Contact </a>
             </li>
 
 
