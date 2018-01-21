@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\post;
+
 class PagesController extends Controller
 {
     public function getIndex()
     {
+        $posts = Post::orderBy('created_at','desc')->limit(4)->get();
 
         #process data
         #talk to model(update database)
         #receive data from the model
         #compile or process data
         #pass data to the correct view
-        return view('pages.welcome');
+        return view('pages.welcome')->with('posts',$posts);
     }
 
     public function getAbout()
