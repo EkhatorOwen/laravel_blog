@@ -16,29 +16,15 @@
     </div> <!-- end of row -->
     <div class="row">
         <div class="col-md-6" >
+
+            @foreach($posts as $post)
                 <div class="post">
-                    <h2> Post Title</h2>
-                    <p>story jjjjjjjjjjjjjjjjjjjjjjja;;;;;;;;;;;;sfsdfadsfasfadfasfasffffffffffffffffffffffff  sfsfasf    aafsdfa jjjjjj</p>
-                    <a href="#" class="btn btn-primary">Read more</a>
+                    <h2> {{$post->title}}</h2>
+                    <p>{{substr($post->body,0,300)}}{{strlen($post->body)>300?'...':''}}</p>
+                    <a href="{{url('blog/'.$post->slug)}}" class="btn btn-primary">Read more</a>
                 </div>
                    <hr>
-                <div class="post">
-                    <h2> Post Title</h2>
-                    <p>story jjjjjjjjjjjjjjjjjjjjjjja;;;;;;;;;;;;sfsdfadsfasfadfasfasffffffffffffffffffffffff  sfsfasf    aafsdfa jjjjjj</p>
-                    <a href="#" class="btn btn-primary">Read more</a>
-                </div>
-                  <hr>
-                <div class="post">
-                    <h2> Post Title</h2>
-                    <p>story jjjjjjjjjjjjjjjjjjjjjjja;;;;;;;;;;;;sfsdfadsfasfadfasfasffffffffffffffffffffffff  sfsfasf    aafsdfa jjjjjj</p>
-                    <a href="#" class="btn btn-primary">Read more</a>
-                </div>
-                <hr>
-                <div class="post">
-                    <h2> Post Title</h2>
-                    <p>story jjjjjjjjjjjjjjjjjjjjjjja;;;;;;;;;;;;sfsdfadsfasfadfasfasffffffffffffffffffffffff  sfsfasf    aafsdfa jjjjjj</p>
-                    <a href="#" class="btn btn-primary">Read more</a>
-                </div>
+            @endforeach
         </div>
         <div class="col-md-4 offset-md-2 ">
             <h1>Side bar</h1>
