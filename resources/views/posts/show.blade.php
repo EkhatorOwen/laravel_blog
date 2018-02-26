@@ -12,6 +12,15 @@
 
             <p class="lead">{{$post->body}}</p>
 
+            <hr>
+
+            <div class="tags">
+
+            @foreach($post->tags as $tag)
+                <span class="badge bg-info">{{$tag->name}}</span>
+                @endforeach
+            </div>
+
         </div>
 
             <div class="col-4">

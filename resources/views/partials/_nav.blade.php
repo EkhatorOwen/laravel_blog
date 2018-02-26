@@ -55,6 +55,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{route('posts.index')}}">Post</a>
                     <a class="dropdown-item" href="{{route('categories.index')}}">Categories</a>
+                    <a class="dropdown-item" href="{{route('tags.index')}}">Tags</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
