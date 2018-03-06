@@ -16,6 +16,7 @@ Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle'
 Route::get('blog',['uses'=>'BlogController@getIndex','as'=>'blog.index']);
 
 Route::get('contact', 'PagesController@getContact');
+Route::post('contact', 'PagesController@postContact');
 
 Route::get('about', 'PagesController@getAbout');
 
@@ -36,3 +37,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::resource('comments','CommentsController',['except'=>['create']]);
+//comments
+Route::post('comments/{post_id}',['uses'=>'CommentController@store','as'=>'comments.store']);
