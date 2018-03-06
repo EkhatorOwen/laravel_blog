@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Support\Facades\Session;
+use App\tag;
 
 class PostController extends Controller
 {
@@ -37,7 +39,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.create')->with('categories',$categories)->with('tags',$tags);
     }
     /**
      * Store a newly created resource in storage.
@@ -61,9 +65,13 @@ class PostController extends Controller
         $post->slug = $request->slug;
         $post->body = $request->body;
         $post->save();
+
+        $post->tags()->sync($request->tags,false);
+
         //Session::flash('Success','The blog post was successfully saved!');
          $request->session()->flash('success','The blog post was successfully saved!');
-        //redirect to another page
+
+         //redirect to another page
         return redirect()->route('posts.show',$post->id);
     }
     /**
@@ -88,7 +96,21 @@ class PostController extends Controller
     {
         //Post is the name of the model
         $post = Post::find($id);
-        return view('posts.edit')->with('post',$post);
+        $categories = Category::all();
+        $cats = array();
+        foreach ($categories as $category)
+        {
+            $cats[$category->id] = $category->name;
+        }
+        $tags = Tag::all();
+        $tags2 = array();
+        foreach ($tags as $tag)
+        {
+            $tags2[$tag->id] = $tag->name;
+        }
+      //  $tagsForThisPost = json_encode($post->tags->pluck('id'));
+
+        return view('posts.edit')->with('post',$post)->with('categories',$cats)->with('tags',$tags2);
     }
     /**
      * Update the specified resource in storage.
@@ -99,16 +121,20 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|unique:posts|max:255',
-            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+     /*   $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255',
             'body' => 'required',
-        ]);
+        ]); */
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->body = $request->input('body');
+        $post->category_id = $request->input('category_id');
         $post->save();
+
+        $post->tags()->sync($request->tags);
+
         $request->session()->flash('success','The blog post was successfully updated!');
        // return view('posts.show')->with('status',$value)->with('post',$post);
         return redirect()->route('posts.show',$post->id);
@@ -122,6 +148,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        $post->tags()->detach();
         $post->delete();
         session()->flash('success','The post was successfully deleted!');
         return redirect()->route('posts.index');
