@@ -19,7 +19,7 @@
 
             {{Form::label('slug','Slug:',['class'=>'form-spacing-top'])}}
             {{Form::text('slug',null,['class'=>'form-control input-lg '])}}
-
+            <br>
             {{Form::label('category_id','Category:')}}
             {{Form::select('category_id',$categories, null,['class' => 'form-spacing-top form-control'])}}
                 <br>
