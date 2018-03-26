@@ -1,5 +1,7 @@
 @extends('main')
-
+@section('stylesheets')
+    {{Html::style('css/open-iconic-master/font/css/open-iconic-bootstrap.css')}}
+@endsection
 @section('title','| View Blog Post')
 
 @section('content')
@@ -8,9 +10,11 @@
 
         <div class="col-8">
 
+            <img src="{{asset('images/'.$post->image)}}" />
+
             <h1>{{$post->title}}</h1>
 
-            <p class="lead">{{$post->body}}</p>
+            <p class="lead">{!! $post->body!!}</p>
 
             <hr>
 
@@ -19,6 +23,33 @@
             @foreach($post->tags as $tag)
                 <span class="badge bg-info">{{$tag->name}}</span>
                 @endforeach
+            </div>
+                <h3>Comments <small>{{$post->comments()->count()}} total</small> </h3>
+        <div id="comment-button">
+                <table class="table">
+                    <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Comment</th>
+                        <th width="50px"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($post->comments as $comment)
+                        <tr>
+                    <td>{{$comment->name}}</td>
+                    <td>{{$comment->email}}</td>
+                    <td>{{$comment->comment}}</td>
+                            <td>
+                            <a href="{{route('comments.edit',$comment->id)}}" class="btn btn-xs btn-primary"> <span class="oi oi-pencil"></span> </a>
+                            <a href="{{route('comments.delete',$comment->id)}}" class="btn btn-xs btn-danger" style="margin-top: 5px"><span class="oi oi-delete"></span></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
             </div>
 
         </div>
@@ -61,9 +92,7 @@
 
                         </div>
                     </div>
-
             </div>
-
      </div>
 
 @endsection

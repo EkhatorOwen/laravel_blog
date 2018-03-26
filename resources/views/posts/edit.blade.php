@@ -4,6 +4,15 @@
 
 @section('stylesheets')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=fqjjaeqcxklqn5cz60stx1dax4zera2d55t55bihi8cranui"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'link',
+            menubar: false
+        });
+
+    </script>
 @endsection
 @section('content')
 
@@ -13,7 +22,7 @@
 
         <div class="col-8">
 
-            {!! Form::model($post,['route'=>['posts.update',$post->id],'method'=>'PUT']) !!}
+            {!! Form::model($post,['route'=>['posts.update',$post->id],'method'=>'PUT','files'=>true]) !!}
             {{Form::label('title','Title:')}}
             {{Form::text('title',null,['class'=>'form-control input-lg'])}}
 
@@ -26,7 +35,8 @@
             {{Form::label('tags','Tags:',['class' => 'form-spacing-top '])}}
             {{Form::select('tags[]',$tags, null,['class'=>'select2-multi form-control','multiple'=>'multiple'])}}
 
-
+            {{Form::label('featured_image','Update Featured Image:',['class' => 'form-spacing-top '])}}
+            {{Form::file('featured_image')}}
 
             {{Form::label('body','Body:',['class'=>'form-spacing-top'])}}
            {{Form::textarea('body',null,['class'=>'form-control'])}}

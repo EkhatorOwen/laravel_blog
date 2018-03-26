@@ -1,24 +1,39 @@
 @extends('main')
-<?php $titleTag = htmlspecialchars($post->title)  ?>
+<?php $titleTag = htmlspecialchars($post->title)?>
+@section('stylesheets')
+    {{Html::style('css/open-iconic-master/font/css/open-iconic-bootstrap.css')}}
+@endsection
 @section('title',"|$titleTag")
 
 @section('content')
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
+
+        <img src="{{asset('images/'.$post->image)}}" height="400" width="800">
+
         <h1>{{$post->title}}</h1>
-        <p>{{$post->body}}</p>
+        <p>{!! $post->body!!}</p>
         <hr>
-        <p>Posted In:{{$post->category->name}}</p>
+        <p>Posted In: {{$post->category->name}}</p>
     </div>
 </div>
 
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
+    <h3 class="comment-title"> <span class="oi oi-comment-square"> </span> {{$post->comments()->count()}} Comments</h3>
 @foreach($post->comments as $comment)
     <div class="comment">
-        <p><strong>Name:</strong> {{$comment->name}}</p>
-        <p><strong>Comment:</strong> {{$comment->comment}}</p>
+        <div class="author-info">
+            <img src="{{ "https://www.gravatar.com/avatar/".md5(strtolower(trim($comment->email))) ."?s=50&d=monsterid"}}" class="author-image">
+        </div>
+        <div class="author-name">
+           <h4> {{$comment->name}}</h4>
+       <p class="author-time"> {{date('F nS, Y - G:iA',strtotime($comment->created_at))}}</p>
+        </div>
+        <div class="comment-content">
+         {{$comment->comment}}
+    </div>
     </div>
 
    @endforeach
@@ -39,7 +54,7 @@
                 <div class="col-md-6">
                     {{Form::label('email','Email:')}}
                     {{Form::text('email',null,['class'=>'form-control'])}}
-            </div>
+                </div>
 
                 <div class="col-md-12">
                     {{Form::label('comment',"Comment:")}}
